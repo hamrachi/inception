@@ -1,14 +1,14 @@
 ARG DEBIAN_PENULTIMATE=debian:bullseye
-FROM ${DEBIAN_PENULTIMATE}
+FROM debian:bullseye
 
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y nginx openssl
 
-RUN apt-get update && apt-get install -y nginx openssl \
-    && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /etc/nginx/certs
+RUN openssl req -x509 -newkey rsa:2048 -nodes -days 30 \
+	-keyout /etc/nginx/certs/server.key
+	-out /etc/nginx/certs/server.crt
+	-subj="/=MA/ST=Casa/OU=1337/CN=hamrachi.42.fr"
 
 COPY conf/default.conf /etc/nginx/conf.d/default.conf
-RUN mkdir -p /etc/nginx/certs
-
-EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
