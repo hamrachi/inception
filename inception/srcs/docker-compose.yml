@@ -7,11 +7,11 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb-hamrachi:/var/lib/mysql
+      - mariadb_volume:/var/lib/mysql
     networks:
       - inception_net_hamrachi
     healthcheck:
-      test: ["CMD". "mysqladmin", "ping", "--silent"]
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
       interval: 5s
       timeout: 10s
       retries: 10
@@ -25,11 +25,11 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress-hamrachi:/var/www/html
+      - wordpress_volume:/var/www/html
     networks:
       - inception_net_hamrachi
     healthcheck:
-      test: ["CMD". "nc", "-z", "localhost", "9000"]
+      test: ["CMD", "nc", "-z", "localhost", "9000"]
       interval: 10s
       timeout: 10s
       retries: 10
