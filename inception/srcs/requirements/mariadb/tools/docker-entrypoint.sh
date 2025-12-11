@@ -13,4 +13,4 @@ EOSQL
 
 mysqladmin  shutdown
 
-exec mariadbd --port=3306 --datadir=/var/lib/mysql
+exec mariadbd --bind-address=0.0.0.0 --datadir=/var/lib/mysql
