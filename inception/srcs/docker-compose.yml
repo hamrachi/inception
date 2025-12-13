@@ -3,55 +3,57 @@ services:
     image: mariadb:mariadb
     build: ./requirements/mariadb
     container_name: mariadb
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - mariadb_volume:/var/lib/mysql
     networks:
       - inception_net_hamrachi
+    volumes:
+      - mariadb_volume:/var/lib/mysql
+    env_file:
+      - .env
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
-      interval: 5s
-      timeout: 10s
+      test: ["CMD", "nc", "-z", "localhost", "3306"]
+      interval: 10s
+      timeout: 5s
       retries: 10
       start_period: 20s
+    restart: always
 
   wordpress:
     image: wordpress:wordpress
     build: ./requirements/wordpress
     container_name: wordpress
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - wordpress_volume:/var/www/html
     networks:
       - inception_net_hamrachi
+    volumes:
+      - wordpress_volume:/var/www/html
+    env_file:
+      - .env
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "9000"]
       interval: 10s
-      timeout: 10s
+      timeout: 5s
       retries: 10
       start_period: 20s
     depends_on:
       mariadb:
         condition: service_healthy
+    restart: always
 
   nginx:
     image: nginx:nginx
     build: ./requirements/nginx
     container_name: nginx
-    restart: always
     ports:
       - "443:443"
-    volumes:
-      - wordpress_volume:/var/www/html
     networks:
       - inception_net_hamrachi
+    volumes:
+      - wordpress_volume:/var/www/html
+    env_file:
+      - .env
     depends_on:
       wordpress:
         condition: service_healthy
+    restart: always
 
 volumes:
   mariadb_volume:

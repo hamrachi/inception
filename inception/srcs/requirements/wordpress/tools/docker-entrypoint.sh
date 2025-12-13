@@ -10,11 +10,10 @@ fi
 
 cd /var/www/html
 
+
 if [ ! -f "wp-config.php" ]; then
 
-    if [ ! -f "index.php" ]; then
-        wp core download --allow-root
-    fi
+    wp core download --allow-root
 
     wp config create \
         --dbname="${MYSQL_DATABASE}" \
@@ -39,6 +38,6 @@ if [ ! -f "wp-config.php" ]; then
         --allow-root
 fi
 
-sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|g' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|g' /etc/php/8.2/fpm/pool.d/www.conf
 
-exec php-fpm7.4 -F
+exec php-fpm8.2 -F
