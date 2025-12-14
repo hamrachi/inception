@@ -1,8 +1,9 @@
 USER DOCUMENTATION
 ==================
 
-1. OVERVIEW
 -----------
+1. OVERVIEW
+
 This infrastructure stack provides a complete WordPress website environment.
 It consists of three integrated services:
 
@@ -15,22 +16,26 @@ It consists of three integrated services:
 - Nginx:
   The secure web server that handles visitor traffic via HTTPS.
 
-2. MANAGING THE PROJECT
 -----------------------
+2. MANAGING THE PROJECT
+
 To manage the infrastructure, open a terminal in the project folder
 and use the following commands:
 
 [ Starting the Stack ]
+
 Command: make
 - Action: Builds the system and starts the website.
 - Note: Wait approximately 30-60 seconds for the database to initialize.
 
 [ Stopping the Stack ]
+
 Command: make down
 - Action: Stops the website and frees up resources.
 
-3. ACCESSING THE WEBSITE
 ------------------------
+3. ACCESSING THE WEBSITE
+
 Once the stack is running, you can access the services via your web browser:
 
 - Website URL:
@@ -42,8 +47,9 @@ Once the stack is running, you can access the services via your web browser:
 (Note: You may encounter a security warning because we use a self-signed
 certificate. You must accept the risk to proceed.)
 
-4. CREDENTIALS
 --------------
+4. CREDENTIALS
+
 For security reasons, usernames and passwords are NOT hardcoded.
 They are located in a hidden configuration file.
 
@@ -53,16 +59,19 @@ They are located in a hidden configuration file.
 Look for variables starting with "WP_ADMIN_" to find your administrator
 login details.
 
-5. BASIC HEALTH CHECKS
 ----------------------
+5. BASIC HEALTH CHECKS
+
 To verify that the system is running correctly:
 
 [ Check Status ]
+
 Command: docker ps
 - Expected Output: You should see 3 containers (nginx, wordpress, mariadb)
   listed as "Up" and "healthy".
 
 [ Check Logs ]
+
 If the site is unreachable, check the logs with:
 - docker logs wordpress
 - docker logs mariadb

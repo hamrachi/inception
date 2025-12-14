@@ -1,8 +1,10 @@
 DEVELOPER DOCUMENTATION
 =======================
 
-1. ENVIRONMENT SETUP
+
 --------------------
+1. ENVIRONMENT SETUP
+
 
 [ Prerequisites ]
 - OS: Linux (Debian/Ubuntu recommended)
@@ -22,8 +24,9 @@ Required Variables:
 - WP_ADMIN_USER, WP_ADMIN_PASSWORD, WP_ADMIN_EMAIL
 - WP_USER, WP_USER_PASSWORD, WP_USER_EMAIL
 
-2. BUILD & LAUNCH LIFECYCLE
 ---------------------------
+2. BUILD & LAUNCH LIFECYCLE
+
 The project uses a Makefile to automate Docker Compose operations.
 
 [ Key Commands ]
@@ -44,8 +47,9 @@ The project uses a Makefile to automate Docker Compose operations.
    - Removes all containers, images, and networks.
    - Deletes Data: Executes "rm -rf /home/hamrachi/data" to wipe the database.
 
-3. CONTAINER MANAGEMENT
 -----------------------
+3. CONTAINER MANAGEMENT
+
 You can interact with the running containers using standard Docker commands:
 
 - Shell Access:
@@ -54,8 +58,9 @@ You can interact with the running containers using standard Docker commands:
 - Database CLI:
   docker exec -it mariadb mysql -u root -p
 
-4. DATA PERSISTENCE & STORAGE
 -----------------------------
+4. DATA PERSISTENCE & STORAGE
+
 Data is persisted on the Host machine using Bind Mounts.
 This ensures data survives container removal.
 
