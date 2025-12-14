@@ -10,6 +10,7 @@ DEVELOPER DOCUMENTATION
 - Permissions: Root/Sudo access (required to create host data directories)
 
 [ Configuration (.env) ]
+
 The project requires a .env file in srcs/ to store sensitive credentials.
 NOTE: This file is NOT included in the repository for security reasons.
 ACTION REQUIRED: Create srcs/.env manually before running the project.
