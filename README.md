@@ -1,15 +1,3 @@
-This version is designed to look **beautiful and organized** inside your terminal (Vim/Nano) while still working perfectly as a Markdown file on GitHub.
-
-I have used "underlined" headers (valid Markdown) because they look like real titles in a text file.
-
-###📋 COPY THIS BLOCK (Final Beautiful Version)**Instructions for VIM users:**
-
-1. Type `:set paste` (Press Enter)
-2. Press `i`
-3. **Paste**
-4. Press `Esc`
-5. Type `:set nopaste` (Press Enter)
-
 ```markdown
 *This project has been created as part of the 42 curriculum by hamrachi.*
 
